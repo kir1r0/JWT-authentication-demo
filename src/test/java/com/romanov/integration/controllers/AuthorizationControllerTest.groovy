@@ -36,7 +36,7 @@ class AuthorizationControllerTest extends Specification {
 
     def "OK status should be returned"() {
         expect:
-        mvc.perform(get("/sigin")).andExpect(status().isOk())
+        mvc.perform(get("/signin")).andExpect(status().isOk())
     }
 
     def "Without csrf token request should be rejected"() {
@@ -59,7 +59,7 @@ class AuthorizationControllerTest extends Specification {
                 .param("repeatedPassword", REPEATED_PASSWORD)
                 .param("email", EMAIL)
                 .flashAttr("userSignUpForm", new UserDto())
-                .with(csrf())).andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/sigin"))
+                .with(csrf())).andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/signin"))
 
         userService.getUserByUserName(USERNAME) != null
 
@@ -69,7 +69,7 @@ class AuthorizationControllerTest extends Specification {
 
     def "Cookie with JWT token should be returned for default user admin/admin"() {
         expect:
-        mvc.perform(post("/sigin")
+        mvc.perform(post("/signin")
                 .param("username", "admin")
                 .param("password", "admin")
                 .flashAttr("userSignInForm", new UserDto())
@@ -79,7 +79,7 @@ class AuthorizationControllerTest extends Specification {
 
     def "Message 'username or password is not valid' should be returned"() {
         expect:
-        mvc.perform(post("/sigin")
+        mvc.perform(post("/signin")
                 .param("username", "a")
                 .param("password", "a")
                 .flashAttr("userSignInForm", new UserDto())
@@ -91,7 +91,7 @@ class AuthorizationControllerTest extends Specification {
         def countOfAllowedUrls = applicationProperties.ALLOWED_URLS.length
 
         expect:
-        mvc.perform(post("/sigin")
+        mvc.perform(post("/signin")
                 .param("username", "admin")
                 .param("password", "admin")
                 .flashAttr("userSignInForm", new UserDto())

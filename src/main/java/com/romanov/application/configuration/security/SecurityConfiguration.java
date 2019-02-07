@@ -35,13 +35,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .cors().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/sigin", "/registration", "/signup", "/error").permitAll()
+                .antMatchers("/", "/signin", "/registration", "/signup", "/error").permitAll()
 
                 .anyRequest().authenticated()
 
                 .and().addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
 
-                .logout().logoutUrl("/logout").invalidateHttpSession(true).logoutSuccessUrl("/sigin")
+                .logout().logoutUrl("/logout").invalidateHttpSession(true).logoutSuccessUrl("/signin")
                 .deleteCookies(applicationProperties.AUTHORIZATION, applicationProperties.REDIRECT_URL)
 
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

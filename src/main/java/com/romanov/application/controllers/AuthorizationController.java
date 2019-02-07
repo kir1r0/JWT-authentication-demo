@@ -49,7 +49,7 @@ public class AuthorizationController {
 
     private Logger logger = LoggerFactory.getLogger(AuthorizationController.class);
 
-    @GetMapping(value = {"/", "/sigin"})
+    @GetMapping(value = {"/", "/signin"})
     public String getLoginPage(Model model, @RequestParam(value = "redirect_url", required = false) String redirectUrl, HttpServletRequest request, HttpServletResponse response) {
         if (isUserNotAnonymous()) {
             redirectUrl = getRedirectUrl(request);
@@ -72,8 +72,8 @@ public class AuthorizationController {
         return "registration";
     }
 
-    @PostMapping("/sigin")
-    public String sigin(@ModelAttribute("userSignInForm") UserDto userForm, HttpServletResponse response, HttpServletRequest request, Model model) {
+    @PostMapping("/signin")
+    public String signin(@ModelAttribute("userSignInForm") UserDto userForm, HttpServletResponse response, HttpServletRequest request, Model model) {
         Authentication authentication;
         try {
             authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userForm.getUsername(), userForm.getPassword()));
@@ -98,12 +98,12 @@ public class AuthorizationController {
             return "registration";
         }
         userService.registerNewUser(userForm);
-        return "redirect:/sigin";
+        return "redirect:/signin";
     }
 
     @PostMapping("/logout")
     public String logout() {
-        return "redirect:/sigin";
+        return "redirect:/signin";
     }
 
     private boolean isUserNotAnonymous() {

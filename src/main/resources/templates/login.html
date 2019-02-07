@@ -11,7 +11,7 @@
 
 
 <div class="container">
-    <form class="form-signin" method="post" th:object="${userSignInForm}" th:action="@{/sigin}">
+    <form class="form-signin" method="post" th:object="${userSignInForm}" th:action="@{/signin}">
         <h2 class="form-signin-heading">Please, sign in</h2>
         <p>
         <p th:if="${errorMessage != null}" class="alert alert-danger" th:text="${errorMessage}"></p>
