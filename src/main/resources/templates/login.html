@@ -1,0 +1,39 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div class="container">
+    <form class="form-signin" method="post" th:object="${userSignInForm}" th:action="@{/signin}">
+        <h2 class="form-signin-heading">Please, sign in</h2>
+        <p>
+        <p th:if="${errorMessage != null}" class="alert alert-danger" th:text="${errorMessage}"></p>
+        <p>
+            <label for="signInUserName" class="sr-only">Username</label>
+            <input type="text" id="signInUserName" name="username" th:field="*{username}" class="form-control"
+                   placeholder="Username"
+                   required="" autofocus="">
+        </p>
+        <p>
+            <label for="signInPassword" class="sr-only">Password</label>
+            <input type="password" id="signInPassword" name="password" th:field="*{password}" class="form-control"
+                   placeholder="Password"
+                   required="">
+        </p>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    </form>
+    <div>
+        <button type="button" class="btn btn-light"><a href="/signup">Create new account</a></button>
+    </div>
+</div>
+</body>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+</html>

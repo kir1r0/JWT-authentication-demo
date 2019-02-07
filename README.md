@@ -1,5 +1,6 @@
 # JWT-authentication-demo
 
+
 This is simple spring boot application with JWT token authorization
 
 How to run
@@ -15,6 +16,4 @@ How to run
 spring data automatically creates tables with users, and then inserts the default user from the import.sql script
 
 after that you may signin by default user (username:admin password:admin)
-
-
 

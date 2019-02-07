@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <title>Welcome</title>
+</head>
+<body>
+Welcome, you did it!
+<br>
+Page id is: <span th:text="${pageId}"></span>
+<br>
+You may logout
+
+<form method="post" th:action="@{/logout}">
+    <button type="submit">logout</button>
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+</form>
+</body>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+</html>
