@@ -1,0 +1,1 @@
+INSERT INTO users (username,password,email) VALUES ('admin','{bcrypt}$2a$10$cgCSlZep2y0eg9sKq3QsOury5IFlfeGQ0v7tTMfLl/r7.XXj53zzO','test@email.com');

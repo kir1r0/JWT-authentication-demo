@@ -1,0 +1,52 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div class="container">
+    <form class="form-signup" autocomplete="off" method="post" th:object="${userSignUpForm}" th:action="@{/signup}">
+        <h2 class="form-signin-heading">Please, sign up</h2>
+        <p>
+            <label for="signUpUserName" class="sr-only">Username</label>
+            <input type="text" id="signUpUserName" th:field="*{username}" class="form-control" placeholder="Username" required="" autofocus="">
+        </p>
+        <p class="alert alert-danger" th:each="error : ${#fields.errors('username')}"
+           th:text="${error}">Validation error</p>
+        <p>
+        <p>
+            <label for="signUpEmail" class="sr-only">Email</label>
+            <input type="email" id="signUpEmail" th:field="*{email}" class="form-control" placeholder="Email" required="">
+        </p>
+        <p class="alert alert-danger" th:each="error : ${#fields.errors('email')}"
+           th:text="${error}">Validation error</p>
+        <p>
+        <p>
+            <label for="signUpPassword" class="sr-only">Password</label>
+            <input type="password" id="signUpPassword" th:field="*{password}" class="form-control" placeholder="Password" required="">
+        </p>
+        <p class="alert alert-danger" th:each="error : ${#fields.errors('password')}"
+           th:text="${error}">Validation error</p>
+        <p>
+            <label for="repeatedSignUpPassword" class="sr-only">Repeat password</label>
+            <input type="password" id="repeatedSignUpPassword" th:field="*{repeatedPassword}" class="form-control" placeholder=" Repeat password" required="">
+        </p>
+        <p class="alert alert-danger" th:each="error : ${#fields.errors('repeatedPassword')}" th:text="${error}">Validation error</p>
+        <input name="_csrf" type="hidden">
+        <button id="signup" class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    </form>
+    <div>
+        <button type="button" class="btn btn-light"><a href="/sigin">Back to login</a></button>
+    </div>
+
+</div>
+</body>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+</html>
